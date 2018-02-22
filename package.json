@@ -4,8 +4,7 @@
   "description": "With some text.",
   "main": "index.js",
   "scripts": {
-    "build":
-      "P=$(npm ls --parseable gitbook-cli); $P/$(node -p \"require(\\\"$P/package.json\\\").main\") build"
+    "gitbook": "gitbook"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,6 @@
   },
   "homepage": "https://github.com/eins78/gitbook-test-book-ci-build#readme",
   "dependencies": {
-    "gitbook": "^3.2.3",
     "gitbook-cli": "^2.3.2"
   }
 }
