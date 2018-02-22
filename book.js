@@ -1,3 +1,3 @@
 module.exports = {
-  gitbook: '3.2.0'
+  gitbook: '3.2.3'
 }
