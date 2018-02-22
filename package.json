@@ -1,0 +1,24 @@
+{
+  "name": "gitbook-test-book-ci-build",
+  "version": "1.0.0",
+  "description": "With some text.",
+  "main": "index.js",
+  "scripts": {
+    "build":
+      "P=$(npm ls --parseable gitbook-cli); $P/$(node -p \"require(\\\"$P/package.json\\\").main\") build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eins78/gitbook-test-book-ci-build.git"
+  },
+  "author": "Max F. Albrecht <1@178.is>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eins78/gitbook-test-book-ci-build/issues"
+  },
+  "homepage": "https://github.com/eins78/gitbook-test-book-ci-build#readme",
+  "dependencies": {
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2"
+  }
+}
