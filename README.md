@@ -1,4 +1,3 @@
-# Readme Title
+# The Title
 
 With some text.
-
