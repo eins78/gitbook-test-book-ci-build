@@ -1,0 +1,33 @@
+jobs:
+
+  test-build:
+    name: '✔︎ Test'
+    run_when:
+      pushed to any branch: { type: branch, include_match: ^.*$ }
+    task:
+      npm ci || npm install
+      npm run gitbook -- build
+
+  build-and-deploy:
+    name: '✌︎ Build and Deploy to Server'
+    run_when:
+      pushed to master branch: { type: branch, include_match: ^master$ }
+      test build was successful: { type: job, job_key: test-build, states: [passed] }
+    tasks:
+      main:
+        # pick a trusted executor that has access to target server
+        traits: { 'ci-g2016-02': yes }
+        environment_variables:
+          HOST: "zhdk.kiste.li"
+          PORT: "21984"
+          USER: "deploy"
+          KEY: "/home/ci-exec-user/.ssh/zhdk_ci_executor_rsa"
+          WEBROOT: "/var/www/html/gitbook-test-book/"
+
+        scripts:
+          main:
+            body: |
+              npm ci || npm install
+              npm run gitbook -- build
+              rsync -rvPh -e "ssh -l "$USER" -p $PORT -i \"$KEY\"" \
+                "./_book/" "$HOST:$WEBROOT"
