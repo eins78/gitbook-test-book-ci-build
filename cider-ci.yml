@@ -12,6 +12,7 @@ jobs:
     name: '✌︎ Build and Deploy to Server'
     run_when:
       pushed to master branch: { type: branch, include_match: ^master$ }
+    depends_on:
       test build was successful: { type: job, job_key: test-build, states: [passed] }
     tasks:
       main:
